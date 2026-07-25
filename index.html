@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECObage — умная сортировка мусора</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true">
+  <span class="leaf leaf-1">🍃</span>
+  <span class="leaf leaf-2">🍃</span>
+  <span class="leaf leaf-3">🍃</span>
+</div>
+
+<header class="topbar">
+  <div class="logo">
+    <span class="logo-icon">♻️</span>
+    <span class="logo-text">EC<span>O</span>bage</span>
+  </div>
+  <p class="tagline">ИИ-помощник для правильной сортировки отходов</p>
+</header>
+
+<main class="app">
+
+  <!-- SCREEN 1: Upload -->
+  <section id="screen-upload" class="screen active">
+    <div class="hero-text">
+      <h1>Наведи камеру на мусор — мы скажем, куда его выбросить</h1>
+      <p>Загрузи фото предмета, и нейросеть определит категорию отходов за секунды</p>
+    </div>
+
+    <div id="dropzone" class="dropzone">
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" hidden>
+      <div class="dropzone-inner">
+        <div class="dropzone-icon">📷</div>
+        <button id="uploadBtn" class="btn-primary" type="button">Загрузить фото</button>
+        <p class="dropzone-hint">или перетащите изображение сюда</p>
+        <p class="dropzone-formats">JPG · JPEG · PNG · WEBP</p>
+      </div>
+    </div>
+
+    <div class="categories-legend">
+      <div class="legend-item"><span class="dot dot-plastic"></span>Пластик</div>
+      <div class="legend-item"><span class="dot dot-glass"></span>Стекло</div>
+      <div class="legend-item"><span class="dot dot-organic"></span>Органика</div>
+      <div class="legend-item"><span class="dot dot-paper"></span>Бумага</div>
+      <div class="legend-item"><span class="dot dot-metal"></span>Металл</div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: Analyzing -->
+  <section id="screen-analyze" class="screen">
+    <div class="analyze-card">
+      <div class="analyze-image-wrap">
+        <img id="previewImg" alt="Загруженное фото">
+        <div class="scan-line"></div>
+      </div>
+      <div class="analyze-status">
+        <div class="spinner"></div>
+        <p id="analyzeText">Анализируем изображение…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: Result -->
+  <section id="screen-result" class="screen">
+    <div class="result-layout">
+      <div class="result-image-wrap">
+        <img id="resultImg" alt="Проанализированное фото">
+      </div>
+
+      <div id="resultCard" class="result-card">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <button id="resetBtn" class="btn-secondary" type="button">Проверить другое фото</button>
+  </section>
+
+  <!-- Error / unsupported format -->
+  <div id="toast" class="toast" role="alert"></div>
+
+</main>
+
+<footer class="footer">
+  <p>ECObage помогает заботиться о планете — правильная сортировка начинается с одной фотографии 🌱</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
