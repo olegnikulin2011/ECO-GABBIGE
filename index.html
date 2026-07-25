@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECObage: сортировка мусора по фото</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <span class="logo-icon">♻️</span>
+    <span class="logo-text">EC<span>O</span>bage</span>
+  </div>
+</header>
+
+<main class="app">
+
+  <!-- SCREEN 1: Upload -->
+  <section id="screen-upload" class="screen active">
+    <div id="dropzone" class="dropzone">
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" hidden>
+      <div class="dropzone-inner">
+        <button id="uploadBtn" class="btn-primary" type="button">Загрузить фото</button>
+      </div>
+    </div>
+
+    <h2 class="cta-text">Определите категорию отходов всего за несколько секунд.</h2>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="gallery/plastic.jpg" alt="Пластик">
+        <p>Пластик</p>
+      </div>
+      <div class="gallery-item">
+        <img src="gallery/glass.jpg" alt="Стекло">
+        <p>Стекло</p>
+      </div>
+      <div class="gallery-item">
+        <img src="gallery/metal.jpg" alt="Металл">
+        <p>Металл</p>
+      </div>
+      <div class="gallery-item">
+        <img src="gallery/paper.jpeg" alt="Бумага">
+        <p>Бумага</p>
+      </div>
+      <div class="gallery-item">
+        <img src="gallery/organic.jpg" alt="Органика">
+        <p>Органика</p>
+      </div>
+    </div>
+
+    <div class="stats-block">
+      <p>790 023 человек уже воспользовались ECObage и отсортировали отходы.</p>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: Analyzing -->
+  <section id="screen-analyze" class="screen">
+    <div class="analyze-card">
+      <div class="analyze-image-wrap">
+        <img id="previewImg" alt="Загруженное фото">
+      </div>
+      <div class="analyze-status">
+        <div class="spinner"></div>
+        <p id="analyzeText">Анализируем изображение…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: Result -->
+  <section id="screen-result" class="screen">
+    <div class="result-layout">
+      <div class="result-image-wrap">
+        <img id="resultImg" alt="Проанализированное фото">
+      </div>
+
+      <div id="resultCard" class="result-card">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <button id="resetBtn" class="btn-secondary" type="button">Проверить другое фото</button>
+  </section>
+
+  <!-- Error / unsupported format -->
+  <div id="toast" class="toast" role="alert"></div>
+
+</main>
+
+<footer class="info-block">
+  <p>Каждый день в мире выбрасываются миллионы тонн отходов. Часть из них можно переработать, если правильно отсортировать. Даже небольшие действия помогают уменьшить количество мусора и сохранить природу.</p>
+  <p class="info-block-cta">Начните с одной фотографии.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
